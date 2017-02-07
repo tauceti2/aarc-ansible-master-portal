@@ -11,9 +11,7 @@ general_packages:
   - fetch-crl
   - iptables-persistent
 
-disabled_services:
-#  - NetworkManager
-#  - wpa_supplicant
+#disabled_services:
 
 enabled_services:
   - ntp
