@@ -1,7 +1,7 @@
 ---
 
 - name: install trust anchor RPMs from URLs
-  yum:
+  apt:
     name: "{{ item }}"
     state: present
   with_items: "{{ credstore_trust_anchor_packages | default([]) }}"
