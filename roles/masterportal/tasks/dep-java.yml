@@ -1,20 +1,8 @@
 ---
 
-# Install latest sun java 1.8
+# Install latest java
 
-- name: download java 8
-  get_url:
-    url: "{{ java_download_url }}"
-    dest: /tmp/jre.rpm
-- name: make sure java 8 is installed
-  yum:
-    name: /tmp/jre.rpm
+- name: make sure java is installed
+  apt:
+    name: openjdk-7-jre
     state: present
-- name: JAVA_HOME present in bashrc
-  lineinfile:
-    dest: /etc/bashrc
-    state: present
-    line: "export JAVA_HOME={{ java_home }}"
-    regexp: "^export JAVA_HOME=.*"
-    insertafter: EOF
-    backup: yes

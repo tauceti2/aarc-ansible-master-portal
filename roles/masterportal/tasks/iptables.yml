@@ -5,7 +5,7 @@
 - name: add iptables config
   template:
     src: iptables.j2
-    dest: "/etc/sysconfig/iptables"
+    dest: "/etc/iptables/rules.v4"
     owner: "root"
     group: "root"
     mode: 0600
@@ -15,7 +15,7 @@
 - name: add ip6tables config
   template:
     src: ip6tables.j2
-    dest: "/etc/sysconfig/ip6tables"
+    dest: "/etc/iptables/rules.v6"
     owner: "root"
     group: "root"
     mode: 0600

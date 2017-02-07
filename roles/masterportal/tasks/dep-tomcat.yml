@@ -3,7 +3,7 @@
 # Install tomcat
 
 - name: install tomcat
-  yum:
+  apt:
     name: "{{ item }}"
     state: present
   with_items: "{{ tomcat_packages }}"
@@ -11,7 +11,7 @@
 
 - name: add CATALINA_HOME to bashrc
   lineinfile:
-    dest: /etc/bashrc
+    dest: /etc/bash.bashrc
     state: present
     line: "export CATALINA_HOME={{ catalina_home }}"
     regexp: "^export CATALINA_HOME=.*"
@@ -24,10 +24,10 @@
 
 # Install jglobus-jsse and globus-ssl-proxies (this is only needed for limited proxies!)
 #- name: install jglobus
-#  yum: name={{ item }} state=present
+#  apt: name={{ item }} state=present
 #  with_items:
-#    - jglobus-jsse 
-#    - jglobus-ssl-proxies
+#    - libjglobus-jsee-java
+#    - libjglobus-ssl-proxies-java
 
 # configurations
 

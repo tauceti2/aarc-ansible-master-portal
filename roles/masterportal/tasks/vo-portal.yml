@@ -53,8 +53,8 @@
 - name: add the right permission to the trust store
   file:
     path: "{{ vo_portal_truststore }}"
-    owner: tomcat
-    group: tomcat
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
     mode: 0644
 
 # deploy war file

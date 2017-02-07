@@ -59,7 +59,7 @@
     group: "{{ tomcat_user }}"
     mode: 0644
 
-- name: copy client approval jar
+- name: copy client approval config
   template:
     src: oa2-cli.j2
     dest: "{{ mp_server_tools_dir }}/oa2-cli"

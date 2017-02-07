@@ -56,8 +56,8 @@
 - name: add the right permission to the trust store
   file: 
     path: "{{ mp_client_truststore }}"
-    owner: tomcat
-    group: tomcat
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_user }}"
     mode: 0644
 
 # convert hostcert into pkcs12, so that oa4mp can load it in its keystore

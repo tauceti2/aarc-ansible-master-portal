@@ -3,30 +3,53 @@
 # Install apache
 
 - name: install httpd
-  yum: name={{item}} state=present
+  apt: name={{item}} state=present
   with_items: "{{ httpd_packages }}"
 
 # configure
 
+- name: enable mod headers
+  apache2_module:
+    state: present
+    name: headers
+
+- name: enable mod proxy
+  apache2_module:
+    state: present
+    name: proxy
+
+- name: enable mod proxy_ajp
+  apache2_module:
+    state: present
+    name: proxy_ajp
+
+- name: enable mod ssl
+  apache2_module:
+    state: present
+    name: ssl
+
 - name: httpd config file present
   template:
     src: ssl.conf.j2
-    dest: /etc/httpd/conf.d/ssl.conf
+    dest: /etc/apache2/mods-available/ssl.conf
     owner: root
     group: root
     mode: 0644
     backup: yes
   notify: restart httpd
 
-- name: httpoxy config present
+- name: httproxy config present
   template:
     src: 00-httpoxy.conf.j2
-    dest: /etc/httpd/conf.d/00-httpoxy.conf
+    dest: /etc/apache2/conf-available/httproxy.conf
     owner: root
     group: root
     mode: 0644
     backup: yes
   notify: restart httpd
+
+- name: enable httproxy config
+  command: /usr/sbin/a2enconf httproxy
 
 # replace welcome page
 
