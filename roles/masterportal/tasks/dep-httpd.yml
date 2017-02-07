@@ -30,8 +30,8 @@
 
 - name: httpd config file present
   template:
-    src: ssl.conf.j2
-    dest: /etc/apache2/mods-available/ssl.conf
+    src: default-ssl.conf.j2
+    dest: /etc/apache2/sites-available/default-ssl.conf
     owner: root
     group: root
     mode: 0644
@@ -48,8 +48,13 @@
     backup: yes
   notify: restart httpd
 
+- name: enable default-ssl site
+  command: /usr/sbin/a2ensite default-ssl
+  notify: restart httpd
+
 - name: enable httproxy config
   command: /usr/sbin/a2enconf httproxy
+  notify: restart httpd
 
 # replace welcome page
 
