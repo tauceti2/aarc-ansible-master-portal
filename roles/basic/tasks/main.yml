@@ -5,9 +5,7 @@
 - include: sshd.yml
 - include: repos.yml
 - include: general.yml
-- include: network.yml
 - include: hostcreds.yml
-- include: access.yml
 - include: iptables.yml
 
 # list of disabled services

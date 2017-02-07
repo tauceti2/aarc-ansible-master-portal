@@ -1,16 +1,14 @@
 ---
-
-- name: yum update machine
-  yum: 
-    name: '*'
-    state: latest
+- name: apt update machine
+  apt:
+    update_cache: yes
 
 - name: set hostname
   hostname:
     name: "{{ inventory_hostname }}"
 
 - name: install general packages
-  yum: 
+  apt: 
     name: "{{ item }}"
     state: present
   with_items: "{{ general_packages }}"
@@ -40,7 +38,7 @@
   register: ntp_config
 
 - name: restart ntpd
-  service: name=ntpd state=restarted enabled=yes
+  service: name=ntp state=restarted enabled=yes
   when: ntp_config.changed
 
 # Configuring fetchcrl

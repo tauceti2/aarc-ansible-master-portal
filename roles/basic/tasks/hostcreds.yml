@@ -2,6 +2,10 @@
 
 # INSTALLING HOST CERTIFICATES
 
+# Ensure /etc/grid-security/ directory exists
+- name: Ensures /etc/grid-security/ dir exists
+  file: path=/etc/grid-security/ state=directory
+
 # Chown only later, at this stage we don't have a myproxy user
 - name: copy hostcert
   copy:
@@ -20,7 +24,7 @@
 
 # install trust root from an rpm package
 - name: deploy trust anchor for host credential (from rpm)
-  yum:
+  apt:
     name: "{{ hostcred_trust_anchor_package }}"
     state: present
   when: hostcred_trust_anchor_package is defined
